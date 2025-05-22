@@ -10,7 +10,7 @@ services:
 
   catering_api:
     container_name: hotel-room-reservation-system-api
-    image: drey34/catering:1.0
+    image: drey34/hotel-room-reservation-api:1.0
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,7 +21,7 @@ services:
       - mongo_db
     command: npm run dev # Ensure your dev script is set up to watch changes
     env_file:
-      - .env.development.local # Load environment variables from this file
+      - .env # Load environment variables from this file
     develop:
       watch:
         - path: ./package-lock.json
@@ -29,7 +29,7 @@ services:
         - path: ./package.json
           action: rebuild
         - path: .
-          target: /src
+          target: ./
           ignore:
             - node_modules
             - .git
